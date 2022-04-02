@@ -1,0 +1,27 @@
+
+
+
+void solve(vector<int>nums,vector<vector<int>>& ans,vector<int>output,int index){
+        if(index>=nums.size()){
+            //base case
+            ans.push_back(output);
+            return ;
+        }
+        
+        //to give every index a chnave
+        for(int i=0;i<nums.size();i++){
+            swap(nums[index],nums[i]);
+            solve(nums,ans,output,index++);
+            
+            //backtracking we are reversing the swap coz we are changing our original ; so for each call we need the original string so:- 
+            swap(nums[index],nums[i]);
+        }
+}
+
+vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        int index=0;
+        vector<int>output;
+        solve(nums,ans,output,index);
+        return ans;
+}
